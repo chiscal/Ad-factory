@@ -103,4 +103,3 @@ async function change_vault(addr) {
     let vault = await contract.change_vault(addr)
     console.log(vault)
 }
-
