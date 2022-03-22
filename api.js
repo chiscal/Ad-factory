@@ -1,6 +1,6 @@
 const express = require("express")
 const bodyParser = require("body-parser")
-const { deposit, createWallet, get_balances, createAd, withdraw } = require("./Factory.js")
+const { deposit, createWallet, get_balances, createAd, withdraw, get_rate } = require("./Factory.js")
 
 const app = express()
 const PORT = process.env.PORT || 3000
@@ -29,6 +29,10 @@ app.get("/createAd/:key/:amt", (req, res) => {
 app.get("/withdraw/:addr/:amt", (req, res) => {
     let { addr, amt } = req.params
     withdraw(addr, amt).then(e => res.send(e))
+})
+
+app.get("/rate", (req, res) => {
+    get_rate().then(e => res.send(e))
 })
 
 app.listen(PORT, () => console.log(`Running on http://localhost:${PORT}`))

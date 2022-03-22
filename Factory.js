@@ -103,3 +103,11 @@ async function change_vault(addr) {
     let vault = await contract.change_vault(addr)
     console.log(vault)
 }
+
+exports.get_rate = async function get_rate() {
+    let contract = new ethers.Contract(Ad_contract, Ad_abi, default_wallet)
+    let rate = await contract.rate()
+    let rate_val = rate.toNumber()
+    let final = rate/1000000000000000000
+    return {"Rate": final}
+}
